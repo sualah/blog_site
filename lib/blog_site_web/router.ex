@@ -64,6 +64,10 @@ defmodule BlogSiteWeb.Router do
   scope "/", BlogSiteWeb do
     pipe_through [:browser, :require_authenticated_user]
 
+    live "/posts/new", PostLive.Index, :new
+    live "/posts/:id/edit", PostLive.Index, :edit
+    live "/posts/:id/show/edit", PostLive.Show, :edit
+
     live_session :require_authenticated_user,
       on_mount: [{BlogSiteWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
@@ -73,6 +77,9 @@ defmodule BlogSiteWeb.Router do
 
   scope "/", BlogSiteWeb do
     pipe_through [:browser]
+
+    live "/posts", PostLive.Index, :index
+    live "/posts/:id", PostLive.Show, :show
 
     delete "/users/log_out", UserSessionController, :delete
 
