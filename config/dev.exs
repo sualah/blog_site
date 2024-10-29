@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :blog_site, BlogSite.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "root",
   hostname: "localhost",
   database: "blog_site_dev",
   stacktrace: true,
